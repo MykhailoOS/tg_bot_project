@@ -24,7 +24,7 @@ def register_all_filters(dp):
 
 
 def register_all_handlers(dp):
-    register_admin(dp)
+    # register_admin(dp)
     register_user(dp)
 
     register_echo(dp)
@@ -35,7 +35,7 @@ async def main():
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
     )
-    logger.info("Starting bot")
+    logger.info("Запуск!")
     config = load_config(".env")
 
     storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()

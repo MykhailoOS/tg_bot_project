@@ -12,7 +12,8 @@ keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
     [types.KeyboardButton(text="побутова техніка")],
     [types.KeyboardButton(text="монітори")],
     [types.KeyboardButton(text="пк комплектючі")],
-    [types.KeyboardButton(text="пральні машини")]
+    [types.KeyboardButton(text="пральні машини")],
+    [types.KeyboardButton(text="/exit")]
 ])
 
 mai_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[

@@ -6,6 +6,6 @@ from aiogram.dispatcher import FSMContext
 
 keyboard_in = types.InlineKeyboardMarkup(inline_keyboard=[
     [types.InlineKeyboardButton(text="ноутбуки з rtx 3050", callback_data="states"),types.InlineKeyboardButton(text="телефони з 120 гц", callback_data="states2")],
-    [types.InlineKeyboardButton(text="...", callback_data="states3")],
+    [types.InlineKeyboardButton(text="новий Ryzen 7 7800X3D", callback_data="states3")],
 ])
 

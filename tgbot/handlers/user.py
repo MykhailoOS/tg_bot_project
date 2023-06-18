@@ -28,6 +28,7 @@ async def txt(message: types.Message):
 
 
 
+
 async def web_parser(message: types.Message):
     full_link = "https://ek.ua"
     if message.text == "ноутбуки":
@@ -127,10 +128,39 @@ async def statya_telefon(obj: types.Message | types.CallbackQuery):
             # print(img["src"])
             await message.answer(img["src"])
 
+async def statya_rayzen(obj: types.Message | types.CallbackQuery):
+    if type(obj) == types.CallbackQuery:
+        await obj.answer()
+        message = obj.message
+    else:
+        message = obj
+    if message.text == "новий Ryzen 7 7800X3D" or obj.data == "states3":
+        url = "https://ek.ua/ua/post/5072/186-ryzen-7-7800x3d-review-the-new-king-of-pc-gaming/"
+    else:
+        return
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, ssl=False) as response:
+
+            html = await response.text()
+
+        soup = BeautifulSoup(html, "html.parser")
+        products = soup.find_all("div", class_="common-table-div s-width")
+        for item in products:
+            product_name = item.find(class_="post-title").get_text(strip=True)
+            product_title = item.find(class_="post-notice").get_text(strip=True)
+            product_photo = item.find(class_="post-main-pic")
+            msg = f"\n<b>{product_name}</b>\n<i>{product_title}</i>"
+            await message.answer(msg, disable_web_page_preview=False)
+            # photo = "https://s.ek.ua/posts/files/5011/wide_pic.jpg"
+            # await message.answer_photo(photo=photo)
+            img = product_photo.findChildren("img")[0]
+            # print(img["src"])
+            await message.answer(img["src"])
+
 
 
 def register_user(dp: Dispatcher):
-    dp.register_message_handler(user_start, commands=["start"], state="*")
+    dp.register_message_handler(user_start, commands=["start", "exit"], state="*")
     dp.register_message_handler(show, commands=["show"])
     dp.register_message_handler(sait, Text(equals=["каталог товарів"]))
     dp.register_message_handler(txt, Text(equals=["автор"]))
@@ -139,5 +169,7 @@ def register_user(dp: Dispatcher):
     dp.register_message_handler(statya_parser, content_types=["text"], text="стаття")
     dp.register_callback_query_handler(statya_telefon, text="states2")
     dp.register_message_handler(statya_telefon, content_types=["text"], text="стаття")
+    dp.register_callback_query_handler(statya_rayzen, text="states3")
+    dp.register_message_handler(statya_rayzen, content_types=["text"], text="стаття")
     dp.register_message_handler(web_parser, content_types=["text"])
 

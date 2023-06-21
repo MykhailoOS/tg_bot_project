@@ -160,8 +160,8 @@ async def statya_rayzen(obj: types.Message | types.CallbackQuery):
 
 
 def register_user(dp: Dispatcher):
-    dp.register_message_handler(user_start, commands=["start", "exit"], state="*")
-    dp.register_message_handler(show, commands=["show"])
+    dp.register_message_handler(user_start, commands=["start"], state="*")
+    dp.register_message_handler(show, commands=["show", "exit"])
     dp.register_message_handler(sait, Text(equals=["каталог товарів"]))
     dp.register_message_handler(txt, Text(equals=["автор"]))
     dp.register_message_handler(show, content_types=["text"], text="Головне меню")

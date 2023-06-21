@@ -19,6 +19,8 @@ keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
 mai_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
     [types.KeyboardButton(text="каталог товарів")],
     [types.KeyboardButton(text="автор")],
+    [types.KeyboardButton(text="/start")],
+    [types.KeyboardButton(text="/help")]
     # [types.KeyboardButton(text="стаття")]
 
 ])

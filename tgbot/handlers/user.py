@@ -15,7 +15,7 @@ from tgbot.keyboards.reply import keyboard, mai_keyboard
 
 
 async def user_start(message: types.Message):
-    await message.reply("Вітаю! Я каталог бот сайту - <i>https://ek.ua</i> \nМої команди: /start - запустити мене, /show - показати меню \nВибери категорію товару,щоб побачити каталог.", parse_mode="html", disable_web_page_preview=True, reply_markup=keyboard_in)
+    await message.reply("Вітаю! Я каталог бот сайту - <i>https://ek.ua</i> \nМої команди:\n/start - перезапустити мене,\n/help - інструкція по використаню\n/show - відкрити меню бота", parse_mode="html", disable_web_page_preview=True, reply_markup=keyboard_in)
 
 async def show(message: types.Message):
     await message.answer("Меню Бота", reply_markup=mai_keyboard)
@@ -25,6 +25,8 @@ async def sait(message: types.Message):
 async def txt(message: types.Message):
     await message.reply("Автор проекту @querty555")
 
+async def helper(message: types.Message):
+    await message.answer("Як використовувати Ekatalog Bot?🧐\n<b>1.Запусти бота командою /start та вибери пункт із головного меню</b>\n🔹каталог товарів - побачити список товарів на сайті\n🔹автор - інформація про розробника\n🔸/start - перезапустити бота\n🔸/help - документація по використаню", reply_markup=mai_keyboard)
 
 
 
@@ -162,6 +164,7 @@ async def statya_rayzen(obj: types.Message | types.CallbackQuery):
 def register_user(dp: Dispatcher):
     dp.register_message_handler(user_start, commands=["start"], state="*")
     dp.register_message_handler(show, commands=["show", "exit"])
+    dp.register_message_handler(helper, commands=["help"])
     dp.register_message_handler(sait, Text(equals=["каталог товарів"]))
     dp.register_message_handler(txt, Text(equals=["автор"]))
     dp.register_message_handler(show, content_types=["text"], text="Головне меню")

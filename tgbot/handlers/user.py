@@ -15,7 +15,7 @@ from tgbot.keyboards.reply import keyboard, mai_keyboard
 
 
 async def user_start(message: types.Message):
-    await message.reply("Вітаю! Я каталог бот сайту - <i>https://ek.ua</i> \nМої команди:\n/start - перезапустити мене,\n/help - інструкція по використаню\n/show - відкрити меню бота", parse_mode="html", disable_web_page_preview=True, reply_markup=keyboard_in)
+    await message.reply("Вітаю!👋 Я каталог бот сайту - <i>https://ek.ua</i> \n🔴Мої команди:🔴\n/start - перезапустити мене,\n/help - інструкція по використаню\n/show - відкрити меню бота", parse_mode="html", disable_web_page_preview=True, reply_markup=keyboard_in)
 
 async def show(message: types.Message):
     await message.answer("Меню Бота", reply_markup=mai_keyboard)
